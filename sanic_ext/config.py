@@ -50,9 +50,11 @@ class Config(SanicConfig):
         oas_custom_file: Optional[os.PathLike] = None,
         oas_ignore_head: bool = True,
         oas_ignore_options: bool = True,
+        oas_path_to_scalar_html: Optional[str] = None,
         oas_path_to_redoc_html: Optional[str] = None,
         oas_path_to_swagger_html: Optional[str] = None,
-        oas_ui_default: Optional[str] = "redoc",
+        oas_ui_default: Optional[str] = "scalar",
+        oas_ui_scalar: bool = True,
         oas_ui_redoc: bool = True,
         oas_ui_redoc_html_title: str = "ReDoc",
         oas_ui_redoc_custom_css: str = "",
@@ -63,6 +65,7 @@ class Config(SanicConfig):
         oas_ui_swagger_oauth2_redirect: str = "/oauth2-redirect.html",
         oas_uri_to_config: str = "/swagger-config",
         oas_uri_to_json: str = "/openapi.json",
+        oas_uri_to_scalar: str = "/scalar",
         oas_uri_to_redoc: str = "/redoc",
         oas_uri_to_swagger: str = "/swagger",
         oas_url_prefix: str = "/docs",
@@ -108,9 +111,11 @@ class Config(SanicConfig):
         self.OAS_CUSTOM_FILE = oas_custom_file
         self.OAS_IGNORE_HEAD = oas_ignore_head
         self.OAS_IGNORE_OPTIONS = oas_ignore_options
+        self.OAS_PATH_TO_SCALAR_HTML = oas_path_to_scalar_html
         self.OAS_PATH_TO_REDOC_HTML = oas_path_to_redoc_html
         self.OAS_PATH_TO_SWAGGER_HTML = oas_path_to_swagger_html
         self.OAS_UI_DEFAULT = oas_ui_default
+        self.OAS_UI_SCALAR = oas_ui_scalar
         self.OAS_UI_REDOC = oas_ui_redoc
         self.OAS_UI_REDOC_HTML_TITLE = oas_ui_redoc_html_title
         self.OAS_UI_REDOC_CUSTOM_CSS = oas_ui_redoc_custom_css
@@ -121,6 +126,7 @@ class Config(SanicConfig):
         self.OAS_UI_SWAGGER_OAUTH2_REDIRECT = oas_ui_swagger_oauth2_redirect
         self.OAS_URI_TO_CONFIG = oas_uri_to_config
         self.OAS_URI_TO_JSON = oas_uri_to_json
+        self.OAS_URI_TO_SCALAR = oas_uri_to_scalar
         self.OAS_URI_TO_REDOC = oas_uri_to_redoc
         self.OAS_URI_TO_SWAGGER = oas_uri_to_swagger
         self.OAS_URL_PREFIX = oas_url_prefix

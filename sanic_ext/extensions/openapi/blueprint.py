@@ -44,7 +44,7 @@ def blueprint_factory(config: Config):
     dir_path = dirname(realpath(__file__))
     dir_path = abspath(dir_path + "/ui")
 
-    for ui in ("redoc", "swagger"):
+    for ui in ("scalar", "redoc", "swagger"):
         if getattr(config, f"OAS_UI_{ui}".upper()):
             path = getattr(config, f"OAS_PATH_TO_{ui}_HTML".upper())
             uri = getattr(config, f"OAS_URI_TO_{ui}".upper())
@@ -260,4 +260,5 @@ def add_static_info_to_spec_from_config(app, specification):
         if host is None or basePath is None:
             continue
 
-        specification.url(f"{scheme}://{host}/{basePath}")
+        specification.url(f"{scheme}://{host}{'/' if basePath != '' else ''}{basePath}")
+        specification.description(getattr(app.config, "API_HOST_DESCRIPTION", None))

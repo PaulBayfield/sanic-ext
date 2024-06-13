@@ -58,7 +58,7 @@ Features
 - CORS protection
 - Predefined, endpoint-specific response serializers
 - Argument injection into route handlers
-- OpenAPI documentation with Redoc and/or Swagger
+- OpenAPI documentation with Scalar, Redoc and/or Swagger
 - Request query arguments and body input validation
 
 
