@@ -44,8 +44,10 @@ def blueprint_factory(config: Config):
     dir_path = dirname(realpath(__file__))
     dir_path = abspath(dir_path + "/ui")
 
+    print(config)
+
     for ui in ("SCALAR", "REDOC", "SWAGGER"):
-        print(getattr(config, f"OAS_UI_{ui}"), getattr(config, f"OAS_UI_{ui})") == True)
+        print(getattr(config, f"OAS_UI_{ui}"), getattr(config, f"OAS_UI_{ui}") == True)
         if getattr(config, f"OAS_UI_{ui}") == True:
             path = getattr(config, f"OAS_PATH_TO_{ui}_HTML")
             uri = getattr(config, f"OAS_URI_TO_{ui}")
