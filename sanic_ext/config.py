@@ -56,6 +56,7 @@ class Config(SanicConfig):
         oas_ui_default: Optional[str] = "scalar",
         oas_ui_scalar: bool = True,
         oas_ui_scalar_html_title: str = "Scalar",
+        oas_ui_scalar_custom_css: str = "",
         oas_ui_redoc: bool = True,
         oas_ui_redoc_html_title: str = "ReDoc",
         oas_ui_redoc_custom_css: str = "",
@@ -118,6 +119,7 @@ class Config(SanicConfig):
         self.OAS_UI_DEFAULT = oas_ui_default
         self.OAS_UI_SCALAR = oas_ui_scalar
         self.OAS_UI_SCALAR_HTML_TITLE = oas_ui_scalar_html_title
+        self.OAS_UI_SCALAR_CUSTOM_CSS = oas_ui_scalar_custom_css
         self.OAS_UI_REDOC = oas_ui_redoc
         self.OAS_UI_REDOC_HTML_TITLE = oas_ui_redoc_html_title
         self.OAS_UI_REDOC_CUSTOM_CSS = oas_ui_redoc_custom_css
