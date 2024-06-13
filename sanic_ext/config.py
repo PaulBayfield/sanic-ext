@@ -117,6 +117,7 @@ class Config(SanicConfig):
         self.OAS_PATH_TO_SWAGGER_HTML = oas_path_to_swagger_html
         self.OAS_UI_DEFAULT = oas_ui_default
         self.OAS_UI_SCALAR = oas_ui_scalar
+        self.OAS_UI_SCALAR_HTML_TITLE = oas_ui_scalar_html_title
         self.OAS_UI_REDOC = oas_ui_redoc
         self.OAS_UI_REDOC_HTML_TITLE = oas_ui_redoc_html_title
         self.OAS_UI_REDOC_CUSTOM_CSS = oas_ui_redoc_custom_css
