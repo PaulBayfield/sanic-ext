@@ -107,6 +107,8 @@ def exclude(flag: bool = True, *, bp: Optional[Blueprint] = None):
     if bp:
         for route in bp.routes:
             exclude(flag)(route.handler)
+        for websocket_route in bp.websocket_routes:
+            exclude(flag)(websocket_route.handler)
         return
 
     def inner(func):

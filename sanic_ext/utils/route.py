@@ -72,6 +72,9 @@ def get_blueprinted_routes(app):
             else:
                 yield (blueprint.name, route.handler)
 
+        for websocket_route in blueprint.websocket_routes:
+            yield (blueprint.name, websocket_route.handler)
+
 
 def get_all_routes(app, skip_prefix):
     uri_filter = get_uri_filter(app)
