@@ -55,6 +55,7 @@ class Config(SanicConfig):
         oas_path_to_swagger_html: Optional[str] = None,
         oas_ui_default: Optional[str] = "scalar",
         oas_ui_scalar: bool = True,
+        oas_ui_scalar_html_title: str = "Scalar",
         oas_ui_redoc: bool = True,
         oas_ui_redoc_html_title: str = "ReDoc",
         oas_ui_redoc_custom_css: str = "",
