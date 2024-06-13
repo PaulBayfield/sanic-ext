@@ -261,4 +261,3 @@ def add_static_info_to_spec_from_config(app, specification):
             continue
 
         specification.url(f"{scheme}://{host}{'/' if basePath != '' else ''}{basePath}")
-        specification.description(getattr(app.config, "API_HOST_DESCRIPTION", None))
