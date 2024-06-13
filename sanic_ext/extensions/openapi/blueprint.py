@@ -45,6 +45,7 @@ def blueprint_factory(config: Config):
     dir_path = abspath(dir_path + "/ui")
 
     for ui in ("SCALAR", "REDOC", "SWAGGER"):
+        print(getattr(config, f"OAS_UI_{ui}"), getattr(config, f"OAS_UI_{ui})") == True)
         if getattr(config, f"OAS_UI_{ui}") == True:
             path = getattr(config, f"OAS_PATH_TO_{ui}_HTML")
             uri = getattr(config, f"OAS_URI_TO_{ui}")
@@ -52,6 +53,8 @@ def blueprint_factory(config: Config):
             html_title = getattr(config, f"OAS_UI_{ui}_HTML_TITLE")
             custom_css = getattr(config, f"OAS_UI_{ui}_CUSTOM_CSS")
             html_path = path if path else f"{dir_path}/{ui}.html"
+
+            print(path, uri, version, html_title, custom_css, html_path)
 
             with open(html_path, "r") as f:
                 page = f.read()
@@ -72,6 +75,8 @@ def blueprint_factory(config: Config):
                 )
 
             if config.OAS_UI_DEFAULT and config.OAS_UI_DEFAULT == ui.lower():
+                print("default")
+
                 bp.add_route(
                     partial(
                         index,
@@ -83,16 +88,18 @@ def blueprint_factory(config: Config):
                     name="index",
                 )
             else:
+                print("not default")
+
                 bp.add_route(
-                partial(
-                    index,
-                    page=page,
-                    html_title=html_title,
-                    custom_css=custom_css,
-                ),
-                uri,
-                name=ui,
-            )
+                    partial(
+                        index,
+                        page=page,
+                        html_title=html_title,
+                        custom_css=custom_css,
+                    ),
+                    uri,
+                    name=ui,
+                )
 
             if ui == "swagger":
                 oauth2_redirect_uri = getattr(
