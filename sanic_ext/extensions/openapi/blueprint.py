@@ -164,9 +164,6 @@ def blueprint_factory(config: Config):
                     _handler = func
                 operation: OperationBuilder = store[_handler]
 
-                print(operation.summary, operation.description)
-                print(operation._exclude, "openapi" in operation.tags)
-
                 if operation._exclude or "openapi" in operation.tags:
                     continue
 
@@ -228,6 +225,8 @@ def blueprint_factory(config: Config):
 
                 operation._app = app
                 specification.operation(uri, method, operation)
+
+            print(f"uri: {uri}", f"route_name: {route_name}", f"operation._default: {operation._default}\n\n")
 
         add_static_info_to_spec_from_config(app, specification)
 
