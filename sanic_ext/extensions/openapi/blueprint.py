@@ -13,7 +13,6 @@ from sanic_ext.config import PRIORITY
 from sanic_ext.extensions.openapi.builders import (
     OperationStore,
     SpecificationBuilder,
-    OperationBuilder,
 )
 
 from ...utils.route import (
@@ -143,8 +142,6 @@ def blueprint_factory(config: Config):
             # --------------------------------------------------------------- #
             # Methods
             # --------------------------------------------------------------- #
-            print(f"uri: {uri}", f"route_name: {route_name}", f"route_parameters: {route_parameters}", f"method_handlers: {method_handlers}", f"host: {host}")
-
             for method, _handler in method_handlers:
                 if (
                     (method == "OPTIONS" and app.config.OAS_IGNORE_OPTIONS)
@@ -162,7 +159,7 @@ def blueprint_factory(config: Config):
                     and func in store
                 ):
                     _handler = func
-                operation: OperationBuilder = store[_handler]
+                operation = store[_handler]
 
                 if operation._exclude or "openapi" in operation.tags:
                     continue
@@ -180,8 +177,6 @@ def blueprint_factory(config: Config):
                     "operationId"
                 ] = f"{method.lower()}~{route_name}"
                 operation._default["summary"] = clean_route_name(route_name)
-
-                print(f"operation: {operation}", f"operation._default: {operation._default}", f"operation._default[operationId]: {operation._default['operationId']}", f"operation._default[summary]: {operation._default['summary']}\n\n")
 
                 if host:
                     if "servers" not in operation._default:
@@ -225,8 +220,6 @@ def blueprint_factory(config: Config):
 
                 operation._app = app
                 specification.operation(uri, method, operation)
-
-            print(f"uri: {uri}", f"route_name: {route_name}", f"operation._default: {operation._default}\n\n")
 
         add_static_info_to_spec_from_config(app, specification)
 
