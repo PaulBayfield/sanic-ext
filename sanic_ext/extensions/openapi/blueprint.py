@@ -13,6 +13,7 @@ from sanic_ext.config import PRIORITY
 from sanic_ext.extensions.openapi.builders import (
     OperationStore,
     SpecificationBuilder,
+    OperationBuilder,
 )
 
 from ...utils.route import (
@@ -161,7 +162,10 @@ def blueprint_factory(config: Config):
                     and func in store
                 ):
                     _handler = func
-                operation = store[_handler]
+                operation: OperationBuilder = store[_handler]
+
+                print(operation.summary, operation.description)
+                print(operation._exclude, "openapi" in operation.tags)
 
                 if operation._exclude or "openapi" in operation.tags:
                     continue
@@ -180,7 +184,7 @@ def blueprint_factory(config: Config):
                 ] = f"{method.lower()}~{route_name}"
                 operation._default["summary"] = clean_route_name(route_name)
 
-                print(f"operation: {operation}", f"operation._default: {operation._default}", f"operation._default[operationId]: {operation._default['operationId']}", f"operation._default[summary]: {operation._default['summary']}")
+                print(f"operation: {operation}", f"operation._default: {operation._default}", f"operation._default[operationId]: {operation._default['operationId']}", f"operation._default[summary]: {operation._default['summary']}\n\n")
 
                 if host:
                     if "servers" not in operation._default:
