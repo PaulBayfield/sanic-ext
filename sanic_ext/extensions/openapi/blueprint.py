@@ -142,7 +142,7 @@ def blueprint_factory(config: Config):
             # --------------------------------------------------------------- #
             # Methods
             # --------------------------------------------------------------- #
-            print(get_all_routes(app, bp.url_prefix))
+            print(f"uri: {uri}", f"route_name: {route_name}", f"route_parameters: {route_parameters}", f"method_handlers: {method_handlers}", f"host: {host}")
 
             for method, _handler in method_handlers:
                 if (
@@ -179,6 +179,8 @@ def blueprint_factory(config: Config):
                     "operationId"
                 ] = f"{method.lower()}~{route_name}"
                 operation._default["summary"] = clean_route_name(route_name)
+
+                print(f"operation: {operation}", f"operation._default: {operation._default}", f"operation._default[operationId]: {operation._default['operationId']}", f"operation._default[summary]: {operation._default['summary']}")
 
                 if host:
                     if "servers" not in operation._default:
